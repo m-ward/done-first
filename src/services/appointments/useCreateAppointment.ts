@@ -4,11 +4,14 @@ import { useMutation } from "react-query";
 export type Appointment = {
   firstName: string;
   lastName: string;
-  time: string;
-  dob: string;
+  time: Date | null;
+  dob: Date | null;
   phone: string;
   email: string;
   address: string;
+  city: string;
+  state: string;
+  zip: string;
   photo: string;
 };
 

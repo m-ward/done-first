@@ -1,9 +1,7 @@
+import React from "react";
 import { TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 import MaUTable from "@material-ui/core/Table";
-
-import React from "react";
 import { Column, useTable } from "react-table";
-import { useAppointments } from "../services/appointments/useAppointments";
 import { Appointment } from "../services/appointments/useCreateAppointment";
 
 export const AppointmentTable = ({
