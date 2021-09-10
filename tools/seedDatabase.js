@@ -23,6 +23,9 @@ import faker from "faker";
       const dob = faker.date.past();
       const phone = faker.phone.phoneNumber();
       const address = faker.address.streetAddress(true);
+      const city = faker.address.city();
+      const state = faker.address.state();
+      const zip = faker.address.zipCode();
       return new Appointment({
         firstName,
         lastName,
@@ -32,6 +35,9 @@ import faker from "faker";
         phone,
         dob,
         address,
+        city,
+        state,
+        zip,
       });
     };
 

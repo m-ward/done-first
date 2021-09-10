@@ -1,5 +1,6 @@
 import { CreateAppointmentView } from "../views/CreateAppointmentView";
 import { AdminView } from "../views/AdminView";
+import { WelcomeView } from "../views/WelcomeView";
 
 const routes = [
   {
@@ -10,6 +11,11 @@ const routes = [
   {
     path: "/admin",
     component: AdminView,
+    isPrivate: false,
+  },
+  {
+    path: "/",
+    component: WelcomeView,
     isPrivate: false,
   },
 ];
