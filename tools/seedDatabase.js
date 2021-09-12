@@ -2,7 +2,6 @@ import { connect, disconnect } from "mongoose";
 import chalk from "chalk";
 import Appointment from "../server/appointments/appointment.model";
 import { url } from "../server/config";
-import faker from "faker";
 
 (async () => {
   let faker = require("faker");
@@ -19,7 +18,7 @@ import faker from "faker";
       const lastName = faker.name.lastName();
       const email = faker.internet.email();
       const time = faker.date.future();
-      const photo = faker.image.imageUrl();
+      const photo = faker.image.imageUrl(50, 50, null, true, false);
       const dob = faker.date.past();
       const phone = faker.phone.phoneNumber();
       const address = faker.address.streetAddress(true);
@@ -48,7 +47,7 @@ import faker from "faker";
         )
       );
       const newAppointments = [];
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 50; i++) {
         const appointment = generateAppointment();
         newAppointments.push(appointment);
       }

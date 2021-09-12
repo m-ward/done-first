@@ -20,6 +20,7 @@
     "formik": "^2.2.9",
     "material-ui-phone-number": "^2.2.6",
     "mongoose": "^5.9.15",
+    "multer": "^1.4.3",
     "prettier": "^2.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -52,6 +53,7 @@
     "babel-preset-minify": "^0.5.1",
     "chalk": "^4.0.0",
     "jest": "^24.9.0",
+    "json-server": "^0.16.3",
     "mongodb-memory-server": "^6.6.1",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2",
@@ -65,6 +67,7 @@
     "start-server": "nodemon --exec babel-node server/server.js",
     "test-server": "jest --config=server/jest.config.js /server --coverage",
     "build-server": "babel ./server --out-dir build-server --ignore \"server/coverage\",\"server/**/*.test.js\",\"server/jest.config.js\" --presets minify",
+    "stubapi": "json-server --watch tools/db.json --port 9000 --routes tools/routes.json",
     "seed": "babel-node tools/seedDatabase.js"
   },
   "eslintConfig": {

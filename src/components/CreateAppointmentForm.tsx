@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "date-fns";
 import {
+  Avatar,
+  Box,
   Button,
   Container,
   FormControl,
@@ -29,6 +31,7 @@ import { FormikValues, Formik, Form } from "formik";
 import * as yup from "yup";
 import { states } from "../config/states";
 import MaskedInput from "react-text-mask";
+import { AddAPhoto } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -71,6 +74,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flex: "1 1 auto",
     justifyContent: "flex-end",
+  },
+  large: {
+    width: theme.spacing(10),
+    height: theme.spacing(10),
   },
 }));
 
@@ -126,23 +133,18 @@ export const CreateAppointmentForm: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();
   const createAppointment = useCreateAppointment();
+  const [avatarPreview, setAvatarPreview] = useState<string>("");
 
   const handleSubmit = (values: FormikValues) => {
-    createAppointment
-      .mutateAsync({
-        email: values.email,
-        firstName: values.firstName,
-        lastName: values.lastName,
-        time: values.time,
-        dob: values.dob,
-        phone: values.phone,
-        address: values.address,
-        city: values.city,
-        state: values.state,
-        zip: values.zip,
-        photo: values.photo,
-      })
-      .then(() => history.push("/"));
+    console.log(values);
+    let data = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      console.log(key);
+      console.log(value);
+      data.set(key, value);
+    });
+    console.log(data);
+    createAppointment.mutateAsync(data).then(() => history.push("/"));
   };
 
   interface TextMaskCustomProps {
@@ -212,7 +214,13 @@ export const CreateAppointmentForm: React.FC = () => {
           setFieldValue,
         }) => (
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Form className={classes.root}>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                submitForm();
+              }}
+              className={classes.root}
+            >
               <Paper component="div" elevation={3} className={classes.paper}>
                 <Typography variant="h4">Contact Info</Typography>
                 <Grid container justifyContent={"space-between"}>
@@ -239,6 +247,43 @@ export const CreateAppointmentForm: React.FC = () => {
                       error={touched.lastName && Boolean(errors.lastName)}
                       helperText={touched.lastName && errors.lastName}
                     />
+                    <Grid item>
+                      <Box
+                        display="flex"
+                        textAlign="center"
+                        justifyContent="center"
+                        flexDirection="column"
+                        alignItems="center"
+                      >
+                        <Avatar src={avatarPreview} className={classes.large}>
+                          <AddAPhoto />
+                        </Avatar>
+
+                        <Button
+                          variant="contained"
+                          component="label"
+                          startIcon={<AddAPhoto />}
+                        >
+                          Choose Avatar
+                          <input
+                            accept="image/*"
+                            // className={classes.input}
+                            id="photo"
+                            type="file"
+                            hidden
+                            onChange={(event) => {
+                              let reader = new FileReader();
+                              let file = event?.target?.files?.[0];
+                              reader.onloadend = () => {
+                                setFieldValue("photo", file);
+                                setAvatarPreview(reader.result as string);
+                              };
+                              file && reader.readAsDataURL(file);
+                            }}
+                          />
+                        </Button>
+                      </Box>
+                    </Grid>
                   </Grid>
                   <KeyboardDatePicker
                     variant="inline"
@@ -279,7 +324,6 @@ export const CreateAppointmentForm: React.FC = () => {
                     <Input
                       value={values.phone}
                       onChange={(e) => {
-                        console.log(e);
                         return handleChange(e);
                       }}
                       onBlur={handleBlur}
@@ -353,19 +397,6 @@ export const CreateAppointmentForm: React.FC = () => {
                     helperText={touched.zip && errors.zip}
                   />
                 </Grid>
-                <Grid item>
-                  <TextField
-                    label="Photo"
-                    id="photo"
-                    name="photo"
-                    value={values.photo}
-                    className={clsx(classes.margin, classes.textField)}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.photo && Boolean(errors.photo)}
-                    helperText={touched.photo && errors.photo}
-                  />
-                </Grid>
               </Paper>
               <Paper
                 component="div"
@@ -399,11 +430,7 @@ export const CreateAppointmentForm: React.FC = () => {
                   <Grid item>
                     <div className={classes.buttonContainer}>
                       <Button onClick={handleReset}>Reset</Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={submitForm}
-                      >
+                      <Button type="submit" variant="contained" color="primary">
                         Submit
                       </Button>
                     </div>
