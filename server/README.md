@@ -1,23 +1,3 @@
-## Frontend instructions
-
-This frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using TypeScript. Please refer to the source for more information.
-
-Start development client:
-```
-yarn start-client
-```
-
-Run client tests:
-```
-yarn test-client
-```
-
-Build client for production:
-```
-yarn build-client
-```
-
-
 ## Backend instructions
 
 This backend uses MongoDB, make sure you have it installed in your system.
@@ -31,17 +11,17 @@ yarn seed
 
 Start development server:
 ```
-yarn start-server
+yarn start
 ```
 
 Run server tests:
 ```
-yarn test-server
+yarn test
 ```
 
 Build server for production:
 ```
-yarn build-server
+yarn build
 ```
 
 Start server in production environment:

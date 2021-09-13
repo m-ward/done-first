@@ -1,50 +1,23 @@
-## Frontend instructions
+##Demo
+https://done-first-interview.herokuapp.com/
 
-This frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using TypeScript. Please refer to the source for more information.
+## Fullstack instructions
 
-Start development client:
+To run this app in fullstack mode, development mode, the easiest way is going to be to through using docker. 
+This compose file is already setup to volume in the src for both the client and server for real time editing.
+The server running on port 8080 using `nodemon` to watch for changes and bounce when needed, and the client is using the react-dev server on port 3000
 ```
-yarn start-client
-```
-
-Run client tests:
-```
-yarn test-client
-```
-
-Build client for production:
-```
-yarn build-client
+cp docker-compose.dev.yml docker-compose.yml
+docker-compose up -d --build
 ```
 
-
-## Backend instructions
-
-This backend uses MongoDB, make sure you have it installed in your system.
-
-Install MongoDB and start your server: [MongoDB instructions](https://docs.mongodb.com/manual/administration/install-community/)
-
-Seed database with sample data if you want:
+For a production build
 ```
-yarn seed
+cp docker-compose.prod.yml docker-compose.yml
+docker-compose up -d --build
 ```
 
-Start development server:
-```
-yarn start-server
-```
+For either, you can connect the contains bash and navigate to `/app/server` and execute `yarn seed` and it will
+populate the database with 50 entries if the collection is empty.
 
-Run server tests:
-```
-yarn test-server
-```
-
-Build server for production:
-```
-yarn build-server
-```
-
-Start server in production environment:
-```
-yarn serve
-```
+### Client and Server stand alone instuctions can be found in their respective readme.

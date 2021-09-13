@@ -4,47 +4,26 @@ This frontend was bootstrapped with [Create React App](https://github.com/facebo
 
 Start development client:
 ```
-yarn start-client
+yarn start
 ```
 
-Run client tests:
+Run client tests: After you write them because I didn't have time to get to that :shame:
 ```
-yarn test-client
+yarn test
 ```
 
 Build client for production:
 ```
-yarn build-client
+yarn build
 ```
 
-
-## Backend instructions
-
-This backend uses MongoDB, make sure you have it installed in your system.
-
-Install MongoDB and start your server: [MongoDB instructions](https://docs.mongodb.com/manual/administration/install-community/)
-
-Seed database with sample data if you want:
+Start json-server mock api
 ```
-yarn seed
+yarn stubapi
 ```
 
-Start development server:
-```
-yarn start-server
-```
-
-Run server tests:
-```
-yarn test-server
-```
-
-Build server for production:
-```
-yarn build-server
-```
-
-Start server in production environment:
-```
-yarn serve
-```
+Typical workflow if only working on the client:
+1) Open 2 terminal instances to this directory
+2) In one, run  `yarn stubapi`
+3) In the other, run `yarn start`
+4) Enjoy working on the client with mock data being served from `tools/db.json`
