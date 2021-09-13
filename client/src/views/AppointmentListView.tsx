@@ -44,7 +44,7 @@ export const AppointmentListView = () => {
         sortType: "datetime",
       },
       {
-        Header: "Time",
+        Header: "Appointment Time",
         id: "time",
         accessor: (original: Appointment) => new Date(original.time),
         Cell: ({ value }: Cell) => {
