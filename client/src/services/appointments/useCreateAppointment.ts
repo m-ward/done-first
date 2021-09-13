@@ -37,7 +37,7 @@ export type UnformattedAppointment = {
 const createAppointment = async (appointment: FormData) => {
   //TODO: Add this to an .env var
   const res = await axios.post(
-    "http://localhost:8080/api/appointments",
+    `${process.env.REACT_APP_BASE_URL}/api/appointments`,
     appointment,
     {
       headers: {

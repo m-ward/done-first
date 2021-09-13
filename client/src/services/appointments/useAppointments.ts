@@ -7,7 +7,9 @@ import { Appointment, UnformattedAppointment } from "./useCreateAppointment";
 // the cache.
 const getAppointments = async (): Promise<Appointment[]> => {
   //TODO: Add this to an .env var
-  const res = await axios.get("http://localhost:8080/api/appointments");
+  const res = await axios.get(
+    `${process.env.REACT_APP_BASE_URL}/api/appointments`
+  );
   return res.data.map((appointment: UnformattedAppointment) => {
     return {
       ...appointment,

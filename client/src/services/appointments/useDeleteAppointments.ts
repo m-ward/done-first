@@ -7,7 +7,7 @@ import { Appointment } from "./useCreateAppointment";
 // the cache.
 const deleteAppointments = async (ids: string[]) => {
   const response = await axios.post(
-    "http://localhost:8080/api/appointments/batch/delete",
+    `${process.env.REACT_APP_BASE_URL}/api/appointments/batch/delete`,
     {
       records: ids,
     }
