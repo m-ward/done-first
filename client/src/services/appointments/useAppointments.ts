@@ -8,7 +8,7 @@ import { Appointment, UnformattedAppointment } from "./useCreateAppointment";
 const getAppointments = async (): Promise<Appointment[]> => {
   //TODO: Add this to an .env var
   const res = await axios.get(
-    `${process.env.REACT_APP_BASE_URL}/api/appointments`
+    `${process.env.REACT_APP_BASE_URL}api/appointments`
   );
   return res.data.map((appointment: UnformattedAppointment) => {
     return {
