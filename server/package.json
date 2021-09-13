@@ -1,0 +1,58 @@
+{
+  "name": "done-first-svc",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:9000",
+  "engines": {
+    "node": ">=12.0.0",
+    "yarn": ">=1.15.*"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "mongoose": "^5.9.15",
+    "multer": "^1.4.3",
+    "prettier": "^2.4.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^14.0.5",
+    "babel-preset-minify": "^0.5.1",
+    "chalk": "^4.0.0",
+    "jest": "^24.9.0",
+    "mongodb-memory-server": "^6.6.1",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2",
+    "typescript": "~3.9.3"
+  },
+  "scripts": {
+    "serve": "cd build-server && node server.js",
+    "start": "nodemon --exec babel-node src/server.js",
+    "test": "jest --config=server/jest.config.js /server --coverage",
+    "build": "babel ./src --out-dir build-server --ignore \"server/coverage\",\"server/**/*.test.js\",\"server/jest.config.js\" --presets minify",
+    "seed": "babel-node tools/seedDatabase.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
