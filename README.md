@@ -1,6 +1,8 @@
 ## Demo
 https://done-first-interview.herokuapp.com/
 
+**Note:** Uploaded images are not going to persist in the demo workspace.  For local development the image with be saved to `/server/uploads` which is volumed for persistance.  However, heroku does not allow that, and I didn't go through the process of getting a cdn set up for handling this the proper way.
+
 ## Fullstack instructions
 
 To run this app in fullstack mode, development mode, the easiest way is going to be to through using docker. 
